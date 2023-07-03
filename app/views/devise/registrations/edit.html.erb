@@ -2,6 +2,22 @@
   <%= render 'components/headers/header_center', title: 'Account Settings' %>
 
   <div class="space-y-10">
+    <%= render 'components/cards/card_section', title: 'Account Details', icon: 'user' do %>
+      <%= simple_form_for(current_user, url: user_path(current_user), html: { method: :patch }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= render 'components/avatars/avatar', user: current_user, size: :xxl %>
+          <%= f.input :first_name, required: true, autofocus: true %>
+          <%= f.input :last_name, required: true, autofocus: true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Update Details", class: 'w-full' %>
+        </div>
+      <% end %>
+    <% end %>
+
     <%= render 'components/cards/card_section', title: 'Change Email', icon: 'envelope-simple' do %>
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.error_notification %>
