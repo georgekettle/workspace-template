@@ -1,0 +1,13 @@
+<div class="flex items-center justify-between px-4 md:px-8 py-4">
+    <%# Logo %>
+    <%= link_to root_path do %>
+        <%= image_tag 'logo.svg', class: 'h-6' %>
+    <% end %>
+    <%# Login button %>
+    <%= link_to new_user_session_path, class: 'btn flex items-center justify-center gap-2' do %>
+        Login
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+        </svg>
+    <% end %>
+</div>
