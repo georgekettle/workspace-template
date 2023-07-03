@@ -1,8 +1,14 @@
 <div class="flex items-center justify-between px-4 md:px-8 py-4 mb-16">
     <%# Logo %>
-    <%= link_to root_path do %>
-        <%= image_tag 'logo.svg', class: 'h-6' %>
-    <% end %>
+    <div class="flex items-center">
+        <% if current_tenant %>
+            <%= render 'shared/select_workspace' %>
+        <% else %>
+            <%= link_to root_path do %>
+                <%= image_tag 'logo.svg', class: 'h-6' %>
+            <% end %>
+        <% end %>
+    </div>
     <% if user_signed_in? %>
         <div data-controller="dropdown" class="relative">
             <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" id="menu-button">
