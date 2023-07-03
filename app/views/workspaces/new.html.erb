@@ -1,0 +1,19 @@
+<div class="container-xs">
+    <%= render 'components/headers/header_center', title: 'Create a Workspace' %>
+
+    <div class="space-y-10">
+        <%= render 'components/cards/card_section' do %>
+            <%= simple_form_for @workspace do |f| %>
+                <%= f.error_notification %>
+
+                <div class="form-inputs">
+                    <%= f.input :name, required: true, autofocus: true %>
+                </div>
+
+                <div class="form-actions">
+                    <%= f.button :submit, "Create Workspace", class: 'w-full' %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
