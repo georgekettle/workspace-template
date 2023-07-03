@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    skip_after_action :verify_authorized, only: :update # authorization not needed because current_user is used
+
     # PATCH /users/:id
     def update
         if current_user.update(user_params)

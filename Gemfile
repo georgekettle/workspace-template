@@ -70,3 +70,5 @@ gem "simple_form", "~> 5.2"
 gem "devise", "~> 4.9"
 
 gem "name_of_person", "~> 1.1"
+
+gem "pundit", "~> 2.3"
