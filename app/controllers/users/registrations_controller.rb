@@ -63,6 +63,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_update_path_for(resource)
-      edit_user_registration_path
+    flash[:notice] = "Your account has been updated successfully."
+    edit_user_registration_path
   end
 end
