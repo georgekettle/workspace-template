@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between px-4 md:px-8 py-4">
+<div class="flex items-center justify-between px-4 md:px-8 py-4 mb-16">
     <%# Logo %>
     <%= link_to root_path do %>
         <%= image_tag 'logo.svg', class: 'h-6' %>
@@ -23,7 +23,7 @@
                         <p class="truncate text-sm font-medium text-tertiary-900" role="none"><%= current_user.email %></p>
                     </div>
                     <div class="py-1" role="none">
-                        <a href="#" class="text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100" role="menuitem" tabindex="-1" id="menu-item-0">Account settings (TODO)</a>
+                        <%= link_to 'Account Settings', edit_user_registration_path, class:"text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100", role:"menuitem", tabindex:"-1", id:"menu-item-0" %>
                     </div>
                     <div class="py-1" role="none">
                         <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100', role: 'menuitem', tabindex: '-1', id: 'menu-item-3' %>
