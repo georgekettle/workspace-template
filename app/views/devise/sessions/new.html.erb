@@ -5,15 +5,17 @@
     <%= f.input :email,
                 required: false,
                 autofocus: true,
+                placeholder: t('placeholder.email'),
                 input_html: { autocomplete: "email" } %>
     <%= f.input :password,
                 required: false,
+                placeholder: t('placeholder.password'),
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :remember_me, as: :boolean, wrapper_html: {class: 'hidden'}, :input_html => { :checked => true } if devise_mapping.rememberable? %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Log in", class: 'w-full' %>
   </div>
 <% end %>
 

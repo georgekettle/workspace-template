@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* TYPOGRAPHY */
+    h1,
+    .h1 {
+        @apply text-4xl font-bold text-tertiary-950 tracking-tight mb-6;
+    }
+    
+    h2,
+    .h2 {
+        @apply text-3xl font-bold text-tertiary-950 tracking-tight mb-6;
+    }
+    
+    h3,
+    .h3 {
+        @apply text-2xl font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    h4,
+    .h4 {
+        @apply text-xl font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    h5,
+    .h5 {
+        @apply text-lg font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    h6,
+    .h6 {
+        @apply text-base font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    .p {
+        @apply text-base text-tertiary-950;
+    }
+
+    .underline-link {
+        @apply text-tertiary-900 hover:text-tertiary-950 hover:underline underline-offset-4;
+    }
+
+    /* FORMS */
+    .form-inputs {
+        @apply space-y-5;
+    }
+
+    .form-actions {
+        @apply mt-5;
+    }
+
+    .form-input {
+        @apply block w-full rounded-md border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-1 focus:ring-inset focus:ring-tertiary-950 sm:text-sm sm:leading-6;
+    }
+    
+    .form-input.error {
+        @apply ring-danger-500;
+    }
+}
+

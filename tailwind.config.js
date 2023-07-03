@@ -5,6 +5,7 @@ module.exports = {
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
+    './config/initializers/**/*.rb',
     './app/javascript/**/*.js'
   ],
   theme: {
@@ -19,4 +20,7 @@ module.exports = {
       info: colors.amber,
     },
   },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

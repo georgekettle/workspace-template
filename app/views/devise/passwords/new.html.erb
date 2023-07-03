@@ -7,11 +7,12 @@
     <%= f.input :email,
                 required: true,
                 autofocus: true,
+                placeholder: t('placeholder.email'),
                 input_html: { autocomplete: "email" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+    <%= f.button :submit, "Send me reset password instructions", class: 'w-full' %>
   </div>
 <% end %>
 
