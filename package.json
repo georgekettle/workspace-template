@@ -7,6 +7,7 @@
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.18.11",
     "postcss": "^8.4.24",
+    "stimulus-dropdown": "^2.1.0",
     "tailwindcss": "^3.3.2"
   },
   "scripts": {
