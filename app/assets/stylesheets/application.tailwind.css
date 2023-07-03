@@ -1,3 +1,231 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hotwire's version of data-disable-with */
+button                  .when-disabled { display: none; }
+button[disabled]        .when-disabled { display: initial; }
+button                  .when-enabled { display: initial; }
+button[disabled]        .when-enabled { display: none; }
+
+@layer components {
+    /* TYPOGRAPHY */
+    h1,
+    .h1 {
+        @apply text-4xl font-bold text-tertiary-950 tracking-tight mb-6;
+    }
+    
+    h2,
+    .h2 {
+        @apply text-3xl font-bold text-tertiary-950 tracking-tight mb-6;
+    }
+    
+    h3,
+    .h3 {
+        @apply text-2xl font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    h4,
+    .h4 {
+        @apply text-xl font-bold text-tertiary-950 tracking-tight;
+    }
+    
+    h5,
+    .h5 {
+        @apply text-lg font-medium text-tertiary-950 tracking-tight;
+    }
+    
+    h6,
+    .h6 {
+        @apply text-base font-medium text-tertiary-950 tracking-tight;
+    }
+    
+    p,
+    .p {
+        @apply text-base text-tertiary-500;
+    }
+
+    .underline-link {
+        @apply text-tertiary-900 hover:text-tertiary-950 hover:underline underline-offset-4;
+    }
+
+    /* FORMS */
+    .form-inputs {
+        @apply space-y-5;
+    }
+
+    .form-actions {
+        @apply mt-5;
+    }
+
+    .form-input {
+        @apply block w-full rounded-md border-0 py-1.5 text-tertiary-900 shadow-sm ring-1 ring-inset ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-1 focus:ring-inset focus:ring-tertiary-950 sm:text-sm sm:leading-6;
+    }
+    
+    .form-input.error {
+        @apply ring-danger-500;
+    }
+
+    /* CONTAINERS */
+    .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .container-sm {
+        @apply max-w-3xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .container-xs {
+        @apply max-w-xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex text-sm font-medium text-center px-4 py-0 rounded-md no-underline items-center justify-between focus:outline-none focus:ring-offset-2 whitespace-nowrap;
+
+        height: 40px;
+        transition: ease 0.3s background, ease 0.3s transform, ease 0.2s color;
+
+        &:hover,
+        &:focus {
+        @apply cursor-pointer bg-tertiary-50;
+        }
+
+        &:disabled {
+        @apply opacity-75 cursor-not-allowed;
+        }
+    }
+
+    .btn-small {
+        @apply px-3 text-sm;
+
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .btn-large {
+        @apply text-base px-6;
+
+        height: 48px;
+        line-height: 48px;
+    }
+
+    .btn-primary {
+        @apply bg-tertiary-950 text-white focus:ring-tertiary-950;
+
+        &:hover,
+        &:focus {
+        @apply bg-tertiary-950 text-white;
+        }
+
+        &.btn-outline {
+        @apply bg-transparent border border-tertiary-950 text-tertiary-950 shadow-none;
+
+        &:hover,
+        &:focus {
+            @apply bg-tertiary-950 text-white;
+        }
+        }
+    }
+
+    .btn-secondary {
+        @apply bg-transparent text-tertiary-950 border border-tertiary-950 focus:ring-tertiary-950;
+
+        &:hover,
+        &:focus {
+        @apply bg-tertiary-950 text-white;
+        }
+    }
+
+    .btn-tertiary {
+        @apply bg-tertiary-700 text-white focus:ring-tertiary-600;
+
+        &:hover,
+        &:focus {
+        @apply bg-tertiary-600 text-white;
+        }
+
+        &.btn-outline {
+        @apply bg-transparent border  border-tertiary-500 text-tertiary-700 shadow-none;
+
+        &:hover,
+        &:focus {
+            @apply bg-tertiary-600 text-white;
+        }
+        }
+    }
+
+    .btn-danger {
+        @apply bg-danger-600 text-white focus:ring-danger-500;
+
+        &:hover,
+        &:focus {
+        @apply bg-danger-500 text-white;
+        }
+
+        &.btn-outline {
+        @apply bg-transparent border border-danger-500 text-danger-500 shadow-none;
+
+        &:hover,
+        &:focus {
+            @apply bg-danger-500 text-white;
+        }
+        }
+    }
+
+    .btn-tertiary {
+        @apply bg-tertiary-100 text-tertiary-800 hover:bg-tertiary-200 hover:text-tertiary-800 focus:ring-tertiary-600;
+    }
+
+    .btn-light-tertiary {
+        @apply bg-tertiary-100 text-tertiary-800 hover:bg-tertiary-200 hover:text-tertiary-800 focus:ring-tertiary-600;
+    }
+
+    .btn-white {
+        @apply bg-white border border-tertiary-300 text-tertiary-700 hover:bg-tertiary-50 hover:text-tertiary-700 focus:ring-tertiary-950;
+
+        &.primary {
+        @apply text-tertiary-950;
+        }
+
+        &.secondary {
+        @apply text-success-600;
+        }
+
+        &.tertiary {
+        @apply text-tertiary-600;
+        }
+
+        &.tertiary {
+        @apply text-tertiary-700;
+        }
+    }
+
+    .btn-link {
+        @apply text-tertiary-950 bg-transparent shadow-none;
+
+        &:hover,
+        &:focus {
+        @apply text-tertiary-950;
+
+        transform: none;
+        }
+    }
+
+    .btn-light-blue {
+        @apply text-tertiary-950 bg-tertiary-950 focus:ring-tertiary-950;
+    }
+
+    .btn-light-success {
+        @apply text-success-700 bg-success-100 focus:ring-success-700;
+    }
+
+    .btn-light-danger {
+        @apply text-danger-700 bg-danger-100 focus:ring-danger-700;
+    }
+
+    .btn-expanded, .btn-block {
+        @apply flex justify-center w-full;
+    }
+}
+
