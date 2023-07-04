@@ -78,3 +78,5 @@ gem "acts_as_tenant", "~> 0.6.1"
 gem "loaf", "~> 0.10.0"
 
 gem "dotenv-rails", groups: [:development, :test]
+
+gem "cloudinary", "~> 1.26"
