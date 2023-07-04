@@ -1,6 +1,5 @@
 class WorkspacesController < ApplicationController
     before_action :set_workspace, only: %i[show destroy settings switch]
-    skip_before_action :find_workspace_and_set_tenant, only: %i[new create]
     
     # GET /workspaces/1
     def show
