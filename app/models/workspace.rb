@@ -1,4 +1,5 @@
 class Workspace < ApplicationRecord
+    has_one_attached :logo
     has_many :workspace_users, dependent: :destroy
     has_many :users, through: :workspace_users
     

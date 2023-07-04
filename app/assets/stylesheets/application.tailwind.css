@@ -66,6 +66,10 @@ button[disabled]        .when-enabled { display: none; }
         @apply ring-danger-500 bg-danger-50;
     }
 
+    input[type="file"] {
+        @apply bg-white block w-full rounded-md border-0 p-0 text-tertiary-900 shadow-sm ring-1 ring-tertiary-300 placeholder:text-tertiary-400 focus:ring-1 focus:ring-inset focus:ring-tertiary-950 sm:text-sm sm:leading-6 file:mr-4 file:py-2.5 file:px-4 file:rounded-none file:border-0 file:text-sm file:font-medium file:bg-tertiary-50 file:text-tertiary-700 file:rounded-l-md hover:file:bg-tertiary-100 file:ring-1 file:ring-inset file:ring-tertiary-300 file:cursor-pointer;
+    }
+
     /* CONTAINERS */
     .container {
         @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
@@ -200,6 +204,28 @@ button[disabled]        .when-enabled { display: none; }
         @apply text-tertiary-700;
         }
     }
+
+    .btn-file {
+        @apply p-0 bg-transparent shadow-none ring-0 overflow-visible;
+    
+        &:focus {
+            @apply p-0 bg-transparent shadow-none ring-0;
+        }
+    
+        /* If the .btn-file class is applied to a <input type="file"> */
+        input[type='file'] {
+            @apply mr-4 bg-white border border-tertiary-300 text-tertiary-700;
+    
+            &:focus {
+                @apply ring-tertiary-950;
+            }
+    
+            &:hover {
+                @apply bg-tertiary-50 text-tertiary-700;
+            }
+        }
+    }
+    
 
     .btn-link {
         @apply text-tertiary-950 bg-transparent shadow-none;

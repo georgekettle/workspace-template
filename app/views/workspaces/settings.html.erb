@@ -8,7 +8,10 @@
                 <%= render 'shared/error_messages', form: f %>
 
                 <div class="form-inputs">
-                    <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
+                    <div class="flex items-center gap-x-4">
+                        <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
+                        <%= f.input :logo, as: :file, label: false, input_html: { class: 'btn-file' } %>
+                    </div>
                     <%= f.input :name, required: true %>
                 </div>
 
