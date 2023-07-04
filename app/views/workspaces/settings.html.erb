@@ -5,7 +5,7 @@
         <%# DETAILS %>
         <%= render 'components/cards/card_section', title: 'Details', icon: 'list-bullets' do %>
             <%= simple_form_for(@workspace) do |f| %>
-                <%= f.error_notification %>
+                <%= render 'shared/error_messages', form: f %>
 
                 <div class="form-inputs">
                     <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
