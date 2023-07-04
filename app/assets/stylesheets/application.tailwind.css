@@ -63,7 +63,7 @@ button[disabled]        .when-enabled { display: none; }
     }
     
     .form-input.error {
-        @apply ring-danger-500;
+        @apply ring-danger-500 bg-danger-50;
     }
 
     /* CONTAINERS */
