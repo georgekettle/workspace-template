@@ -1,8 +1,12 @@
 <div class="flex items-center justify-between px-4 md:px-8 py-4 mb-16">
     <%# Logo %>
-    <div class="flex items-center">
+    <div class="flex items-center gap-x-6">
         <% if current_tenant %>
             <%= render 'shared/select_workspace' %>
+            <div class="flex items-center gap-x-4">
+                <%# Home btn %>
+                <%= render 'shared/navbar_link', text: 'Home', icon: 'house-simple', path: workspace_path(current_tenant) %>
+            </div>
         <% else %>
             <%= link_to root_path do %>
                 <%= image_tag 'logo.svg', class: 'h-6' %>
