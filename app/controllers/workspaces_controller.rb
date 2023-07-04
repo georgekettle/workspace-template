@@ -1,5 +1,5 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[show destroy]
+    before_action :set_workspace, only: %i[show destroy settings]
     skip_before_action :find_workspace_and_set_tenant, only: %i[new create]
     
     # GET /workspaces/1
@@ -30,6 +30,11 @@ class WorkspacesController < ApplicationController
     def destroy
         @workspace.destroy
         redirect_to root_path, notice: 'Workspace was successfully destroyed.'
+    end
+
+    # GET /workspaces/1/settings
+    def settings
+        @workspace_users = @workspace.workspace_users.includes(:user)
     end
 
     private

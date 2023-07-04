@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     passwords: "users/passwords",
   }
   resources :users, only: [:update]
-  resources :workspaces, only: [:show, :new, :create, :destroy]
+  resources :workspaces, only: [:show, :new, :create, :destroy] do
+    member do
+      get :settings
+    end
+  end
 
   root "pages#home"
 end

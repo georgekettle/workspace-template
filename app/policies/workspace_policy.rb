@@ -18,10 +18,18 @@ class WorkspacePolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def settings?
+    user_is_owner? || user_is_admin?
+  end
+
   private
 
   def user_is_owner?
     WorkspaceUser.find_by(user: user, workspace: record)&.owner?
+  end
+
+  def user_is_admin?
+    WorkspaceUser.find_by(user: user, workspace: record)&.admin?
   end
 
   def user_is_member?

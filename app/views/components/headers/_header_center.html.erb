@@ -1,3 +1,15 @@
+<% subtitle ||= nil %>
+
 <div class="flex flex-col items-center justify-center mb-16 text-center">
-    <h1 class="h2"><%= title %></h1>
+    <div class="mb-8">
+        <% if subtitle %>
+            <h1 class="h2 mb-4"><%= title %></h1>
+            <p><%= subtitle %></p>
+        <% else %>
+            <h1 class="h2 mb-0"><%= title %></h1>
+        <% end %>
+    </div>
+    <div class="flex items-center justify-center">
+        <%= yield %>
+    </div>
 </div>
