@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :workspaces, only: [:show, :new, :create, :destroy] do
     member do
       get :settings
+      post :switch
     end
   end
 

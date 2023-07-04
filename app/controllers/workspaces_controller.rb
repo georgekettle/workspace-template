@@ -1,10 +1,9 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[show destroy settings]
+    before_action :set_workspace, only: %i[show destroy settings switch]
     skip_before_action :find_workspace_and_set_tenant, only: %i[new create]
     
     # GET /workspaces/1
     def show
-        set_current_tenant(@workspace) # set current tenant to this workspace
     end
 
     # GET /workspaces/new
@@ -35,6 +34,12 @@ class WorkspacesController < ApplicationController
     # GET /workspaces/1/settings
     def settings
         @workspace_users = @workspace.workspace_users.includes(:user)
+    end
+
+    # POST /workspaces/1/switch
+    def switch
+        session[:tenant_id] = params[:id]
+        redirect_to @workspace, notice: 'Workspace was successfully switched.'
     end
 
     private

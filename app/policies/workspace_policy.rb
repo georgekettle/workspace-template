@@ -22,6 +22,10 @@ class WorkspacePolicy < ApplicationPolicy
     user_is_owner? || user_is_admin?
   end
 
+  def switch?
+    user_is_member?
+  end
+
   private
 
   def user_is_owner?

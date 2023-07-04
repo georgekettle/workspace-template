@@ -16,7 +16,7 @@
         <div class="z-10 mt-2 w-full divide-y divide-tertiary-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="workspace-select" tabindex="-1">
             <div class="py-1" role="none">
                 <% current_user.workspaces.each do |workspace| %>
-                    <%= link_to workspace, class: 'flex items-center gap-2 text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100' do %>
+                    <%= link_to switch_workspace_path(workspace), data: { turbo_method: :post }, class: 'flex items-center gap-2 text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100' do %>
                         <%= render 'workspaces/avatar', workspace: @workspace, size: :sm %>
                         <span class="whitespace-nowrap line-clamp-1"><%= workspace.name %></span>
                     <% end %>
