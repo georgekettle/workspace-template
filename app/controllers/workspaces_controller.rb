@@ -1,8 +1,11 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[destroy]
+    before_action :set_workspace, only: %i[show destroy]
     skip_before_action :find_workspace_and_set_tenant, only: %i[new create]
     
-    
+    # GET /workspaces/1
+    def show
+        set_current_tenant(@workspace) # set current tenant to this workspace
+    end
 
     # GET /workspaces/new
     def new

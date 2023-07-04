@@ -6,6 +6,10 @@ class WorkspacePolicy < ApplicationPolicy
     # end
   end
 
+  def show?
+    user_is_member?
+  end
+
   def create?
     true
   end
@@ -18,5 +22,9 @@ class WorkspacePolicy < ApplicationPolicy
 
   def user_is_owner?
     WorkspaceUser.find_by(user: user, workspace: record)&.owner?
+  end
+
+  def user_is_member?
+    WorkspaceUser.find_by(user: user, workspace: record).present?
   end
 end
