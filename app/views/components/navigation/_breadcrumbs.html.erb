@@ -1,0 +1,12 @@
+<ul class="card-flat rounded-full px-4 py-1 flex text-sm leading-6 whitespace-nowrap min-w-0 font-normal list-none">  
+    <% breadcrumb_trail do |crumb| %>
+        <% if crumb.path == request.path %>
+            <li class="text-tertiary-950 truncate"><%= crumb.name %></li>
+        <% else %>
+            <li class="flex items-center">
+                <%= link_to crumb.name, crumb.path, class: "text-tertiary-500 hover:text-tertiary-900" %>
+                <i class="ph-bold ph-caret-right mx-3 overflow-visible text-tertiary-500 text-xs"></i>
+            </li>
+        <% end %>
+    <% end %>
+</ul>

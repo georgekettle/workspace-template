@@ -74,3 +74,5 @@ gem "name_of_person", "~> 1.1"
 gem "pundit", "~> 2.3"
 
 gem "acts_as_tenant", "~> 0.6.1"
+
+gem "loaf", "~> 0.10.0"

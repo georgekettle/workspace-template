@@ -1,6 +1,11 @@
 <% subtitle ||= nil %>
 
 <div class="flex flex-col items-center justify-center mb-16 text-center">
+    <% if breadcrumb_trail.any? %>
+        <div class="mb-8">
+            <%= render 'components/navigation/breadcrumbs' %>
+        </div>
+    <% end %>
     <div class="mb-8">
         <% if subtitle %>
             <h1 class="h2 mb-4"><%= title %></h1>

@@ -227,5 +227,18 @@ button[disabled]        .when-enabled { display: none; }
     .btn-expanded, .btn-block {
         @apply flex justify-center w-full;
     }
+
+    /* CARDS */
+    .card {
+        @apply bg-white shadow-sm rounded-lg border border-tertiary-300;
+    }
+
+    .card-flat {
+        @apply rounded-lg ring-inset bg-tertiary-950/[.03] ring-1 ring-tertiary-950/[.04];
+    }
+
+    .card-danger {
+        @apply rounded-lg ring-inset bg-danger-50 ring-1 ring-danger-500/20;
+    }
 }
 

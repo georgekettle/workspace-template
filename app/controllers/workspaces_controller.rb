@@ -33,6 +33,9 @@ class WorkspacesController < ApplicationController
     # GET /workspaces/1/settings
     def settings
         @workspace_users = @workspace.workspace_users.includes(:user)
+
+        breadcrumb "Home", workspace_path(@workspace)
+        breadcrumb "Settings", settings_workspace_path(@workspace)
     end
 
     # POST /workspaces/1/switch
