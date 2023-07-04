@@ -1,0 +1,12 @@
+<% size ||= :md %>
+
+<% case size %>
+<% when :sm %>
+    <div class="rounded-full h-6 w-6 bg-info-400 shrink-0"></div>
+<% when :md %>
+    <div class="rounded-full h-8 w-8 bg-info-400 shrink-0"></div>
+<% when :lg %>
+    <div class="rounded-full h-12 w-12 bg-info-400 shrink-0"></div>
+<% when :xl %>
+    <div class="rounded-full h-16 w-16 bg-info-400 shrink-0"></div>
+<% end %>
