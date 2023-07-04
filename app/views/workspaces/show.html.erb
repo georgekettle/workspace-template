@@ -1,8 +1,9 @@
 <div class="container-xs">
-    <div class="flex justify-center mb-6">
+    <div class="flex justify-center mb-8">
         <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
     </div>
-    <%= render 'components/headers/header_center', title: @workspace.name, subtitle: 'Lorem ipsum text' do %>
+    <%= render 'components/headers/header_center', title: @workspace.name do %>
+        <%= render 'components/avatars/avatar_list', users: @workspace.users, size: :xl %>
         <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center' do %>
             <i class="ph-bold ph-dots-three-vertical text-xl"></i>
         <% end %>

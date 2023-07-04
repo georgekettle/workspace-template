@@ -6,7 +6,7 @@
             <%= render 'components/navigation/breadcrumbs' %>
         </div>
     <% end %>
-    <div class="mb-8">
+    <div class="mb-10">
         <% if subtitle %>
             <h1 class="h2 mb-4"><%= title %></h1>
             <p><%= subtitle %></p>
@@ -14,7 +14,7 @@
             <h1 class="h2 mb-0"><%= title %></h1>
         <% end %>
     </div>
-    <div class="flex items-center justify-center">
+    <div class="flex items-center justify-center gap-x-4">
         <%= yield %>
     </div>
 </div>
