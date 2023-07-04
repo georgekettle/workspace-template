@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :settings
       post :switch
     end
+    resources :workspace_users, only: [:new, :create]
   end
 
   root "pages#home"

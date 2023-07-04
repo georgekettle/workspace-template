@@ -1,5 +1,5 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[show update destroy settings switch]
+    before_action :set_workspace, only: %i[show update destroy settings invite switch]
     
     # GET /workspaces/1
     def show

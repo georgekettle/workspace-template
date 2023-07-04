@@ -3,7 +3,13 @@
         <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
     </div>
     <%= render 'components/headers/header_center', title: @workspace.name do %>
-        <%= render 'components/avatars/avatar_list', users: @workspace.users, size: :xl %>
+        <div class="flex items-center -space-x-2">
+            <%= render 'components/avatars/avatar_list', users: @workspace.users, size: :xl %>
+            <%= link_to new_workspace_workspace_user_path(@workspace), class: 'btn h-10 w-10 rounded-full btn-white flex items-center justify-center z-10' do %>
+                <span class="sr-only">Invite Members</span>
+                <i class="ph-bold ph-plus text-xl"></i>
+            <% end %>
+        </div>
         <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center' do %>
             <i class="ph-bold ph-dots-three-vertical text-xl"></i>
         <% end %>
