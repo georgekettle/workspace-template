@@ -1,5 +1,5 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[show destroy settings switch]
+    before_action :set_workspace, only: %i[show update destroy settings switch]
     
     # GET /workspaces/1
     def show
@@ -21,6 +21,15 @@ class WorkspacesController < ApplicationController
             redirect_to @workspace, notice: 'Workspace was successfully created.'
         else
             render :new, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        if @workspace.update(workspace_params)
+            redirect_to settings_workspace_path(@workspace), notice: 'Workspace was successfully updated.'
+        else
+            @workspace_users = @workspace.workspace_users.includes(:user)
+            render :settings, status: :unprocessable_entity
         end
     end
 

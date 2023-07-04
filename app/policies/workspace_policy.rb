@@ -14,6 +14,10 @@ class WorkspacePolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user_is_owner? || user_is_admin?
+  end
+
   def destroy?
     user_is_owner?
   end
