@@ -20,7 +20,7 @@ class WorkspacesController < ApplicationController
         authorize @workspace
         if @workspace.save
             WorkspaceUser.create(user_id: current_user.id, workspace_id: @workspace.id, role: 0) # create owner
-            redirect_to root_path, notice: 'Workspace was successfully created.'
+            redirect_to @workspace, notice: 'Workspace was successfully created.'
         else
             render :new, status: :unprocessable_entity
         end
