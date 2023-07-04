@@ -1,4 +1,9 @@
 class WorkspacesController < ApplicationController
+    before_action :set_workspace, only: %i[destroy]
+    skip_before_action :find_workspace_and_set_tenant, only: %i[new create]
+    
+    
+
     # GET /workspaces/new
     def new
         @workspace = Workspace.new
@@ -18,7 +23,18 @@ class WorkspacesController < ApplicationController
         end
     end
 
+    # DELETE /workspaces/1
+    def destroy
+        @workspace.destroy
+        redirect_to root_path, notice: 'Workspace was successfully destroyed.'
+    end
+
     private
+
+    def set_workspace
+        @workspace = Workspace.find(params[:id])
+        authorize @workspace
+    end
 
     # Only allow a list of trusted parameters through.
     def workspace_params
