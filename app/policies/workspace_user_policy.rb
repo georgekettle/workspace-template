@@ -30,6 +30,10 @@ class WorkspaceUserPolicy < ApplicationPolicy
     end
   end
 
+  def make_owner?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?

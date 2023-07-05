@@ -30,6 +30,10 @@ class WorkspacePolicy < ApplicationPolicy
     user_is_member?
   end
 
+  def transfer?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?

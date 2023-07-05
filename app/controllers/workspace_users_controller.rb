@@ -34,6 +34,23 @@ class WorkspaceUsersController < ApplicationController
         redirect_to settings_workspace_path(@workspace), notice: "User removed from workspace."
     end
 
+    # PATCH /workspace_users/:id/make_owner
+    def make_owner
+        # Transfer ownership of workspace to another user inside of a transaction
+        # to ensure that the workspace always has an owner.
+        Workspace.transaction do
+            @new_owner = WorkspaceUser.find(params[:id])
+            @workspace = @new_owner.workspace
+            @current_owner = WorkspaceUser.find_by(workspace: @workspace, user: current_user)
+            
+            authorize @new_owner
+
+            @new_owner.update(role: :owner)
+            @current_owner.update(role: :member)
+        end
+        redirect_to @workspace, notice: "Ownership successfully transferred to #{@new_owner.user.name}."
+    end
+
     private
 
     def workspace_user_params

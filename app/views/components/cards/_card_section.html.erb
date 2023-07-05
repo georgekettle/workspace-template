@@ -20,5 +20,9 @@
         <div class="card-danger p-4 md:p-6 lg:p-8">
             <%= yield %>
         </div>
+    <% when :white %>
+        <div class="card p-4 md:p-6 lg:p-8">
+            <%= yield %>
+        </div>
     <% end %>
 </div>
