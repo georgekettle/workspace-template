@@ -13,8 +13,8 @@
             <% end %>
         </div>
         <% if policy(@workspace).settings? %>
-            <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center' do %>
-                <i class="ph-bold ph-dots-three-vertical text-xl"></i>
+            <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center opacity-50' do %>
+                <i class="ph-bold ph-gear text-xl"></i>
             <% end %>
         <% end %>
     <% end %>

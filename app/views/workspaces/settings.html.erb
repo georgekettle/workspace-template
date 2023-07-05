@@ -42,14 +42,16 @@
         <% end %>
 
         <%# DANGER ZONE %>
-        <%= render 'components/cards/card_section', title: 'Danger Zone', icon: 'warning', appearance: :danger do %>
-            <div class="md:flex items-center justify-between">
-                <div class="space-y-1">
-                    <h3 class="h6 text-base">Delete this Project</h3>
-                    <p>Once you delete a project, there is no going back. Please be certain.</p>
+        <% if policy(@workspace).destroy? %>
+            <%= render 'components/cards/card_section', title: 'Danger Zone', icon: 'warning', appearance: :danger do %>
+                <div class="md:flex items-center justify-between">
+                    <div class="space-y-1">
+                        <h3 class="h6 text-base">Delete this Project</h3>
+                        <p>Once you delete a project, there is no going back. Please be certain.</p>
+                    </div>
+                    <%= link_to "Delete Project", @workspace, class: "btn btn-small btn-danger mt-4 md:mt-0", data: { turbo_confirm: "You can't undo this. Are you sure you want to delete this project?", turbo_method: :delete } %>
                 </div>
-                <%= link_to "Delete Project", @workspace, class: "btn btn-small btn-danger mt-4 md:mt-0", data: { turbo_confirm: "You can't undo this. Are you sure you want to delete this project?", turbo_method: :delete } %>
-            </div>
+            <% end %>
         <% end %>
     </div>
 </div>
