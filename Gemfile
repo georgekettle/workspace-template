@@ -62,6 +62,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem "letter_opener"
 end
 
 
@@ -72,3 +74,11 @@ gem "devise", "~> 4.9"
 gem "name_of_person", "~> 1.1"
 
 gem "pundit", "~> 2.3"
+
+gem "acts_as_tenant", "~> 0.6.1"
+
+gem "loaf", "~> 0.10.0"
+
+gem "dotenv-rails", groups: [:development, :test]
+
+gem "cloudinary", "~> 1.26"

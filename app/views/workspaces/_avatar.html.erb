@@ -1,0 +1,25 @@
+<% size ||= :md %>
+
+<% if workspace.logo.attached? %>
+    <% case size %>
+    <% when :sm %>
+        <%= cl_image_tag workspace.logo.key, height: 50, width: 50, crop: :fill, class: "rounded-full h-6 w-6 bg-info-400 shrink-0 border border-tertiary-900" %>
+    <% when :md %>
+        <%= cl_image_tag workspace.logo.key, height: 80, width: 80, crop: :fill, class: "rounded-full h-8 w-8 bg-info-400 shrink-0 border border-tertiary-900" %>
+    <% when :lg %>
+        <%= cl_image_tag workspace.logo.key, height: 100, width: 100, crop: :fill, class: "rounded-full h-12 w-12 bg-info-400 shrink-0 border border-tertiary-900" %>
+    <% when :xl %>
+        <%= cl_image_tag workspace.logo.key, height: 120, width: 120, crop: :fill, class: "rounded-full h-16 w-16 bg-info-400 shrink-0 border border-tertiary-900" %>
+    <% end %>
+<% else %>
+    <% case size %>
+    <% when :sm %>
+        <div class="rounded-full h-6 w-6 bg-info-400 shrink-0 border border-tertiary-900"></div>
+    <% when :md %>
+        <div class="rounded-full h-8 w-8 bg-info-400 shrink-0 border border-tertiary-900"></div>
+    <% when :lg %>
+        <div class="rounded-full h-12 w-12 bg-info-400 shrink-0 border border-tertiary-900"></div>
+    <% when :xl %>
+        <div class="rounded-full h-16 w-16 bg-info-400 shrink-0 border border-tertiary-900"></div>
+    <% end %>
+<% end %>

@@ -1,0 +1,33 @@
+<div data-controller="dropdown" class="relative w-56">
+    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" id="workspace-select" class="group w-full flex items-center gap-2 bg-white border border-tertiary-300 rounded-md px-3 py-2 overflow-hidden hover:shadow-sm">
+        <%= render 'workspaces/avatar', workspace: current_tenant, size: :md %>
+        <p class="whitespace-nowrap text-tertiary-900 w-full text-left shrink-1 line-clamp-1"><%= current_tenant.name %></p>
+        <i class="ph-bold ph-caret-down shrink-0 ml-2 text-tertiary-400 group-hover:text-tertiary-900"></i>
+    </button>
+
+    <div
+        data-dropdown-target="menu"
+        class="hidden w-full transition transform origin-top-left absolute left-0"
+        data-transition-enter-from="opacity-0 scale-95"
+        data-transition-enter-to="opacity-100 scale-100"
+        data-transition-leave-from="opacity-100 scale-100"
+        data-transition-leave-to="opacity-0 scale-95"
+    >
+        <div class="z-10 mt-2 w-full divide-y divide-tertiary-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="workspace-select" tabindex="-1">
+            <div class="py-1" role="none">
+                <% current_user.workspaces.each do |workspace| %>
+                    <%= link_to switch_workspace_path(workspace), data: { turbo_method: :post }, class: 'flex items-center gap-2 text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100' do %>
+                        <%= render 'workspaces/avatar', workspace: workspace, size: :sm %>
+                        <span class="whitespace-nowrap line-clamp-1"><%= workspace.name %></span>
+                    <% end %>
+                <% end %>
+            </div>
+            <div class="py-1" role="none">
+                <%= link_to new_workspace_path, class: 'flex items-center justify-center gap-2 font-medium text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100' do %>
+                    <i class="ph-bold ph-plus"></i>
+                    New Workspace
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<% size ||= :md %>
+
+<div class="isolate flex -space-x-1 overflow-hidden">
+    <% users.each do |user| %>
+        <%= render 'components/avatars/avatar', size: size, user: user %>
+    <% end %>
+</div>

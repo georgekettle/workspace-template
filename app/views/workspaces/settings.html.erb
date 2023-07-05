@@ -1,0 +1,57 @@
+<div class="container-xs">
+    <%= render 'components/headers/header_center', title: "Workspace Settings" %>
+    
+    <div class="space-y-10">
+        <%# DETAILS %>
+        <%= render 'components/cards/card_section', title: 'Details', icon: 'list-bullets' do %>
+            <%= simple_form_for(@workspace) do |f| %>
+                <%= render 'shared/error_messages', form: f %>
+
+                <div class="form-inputs">
+                    <div class="flex items-center gap-x-4">
+                        <%= render 'workspaces/avatar', workspace: @workspace, size: :xl %>
+                        <%= f.input :logo, as: :file, label: false, input_html: { class: 'btn-file' } %>
+                    </div>
+                    <%= f.input :name, required: true %>
+                </div>
+
+                <div class="form-actions">
+                    <%= f.button :submit, "Update Details", class: 'w-full' %>
+                </div>
+            <% end %>
+        <% end %>
+        
+        <%# MEMBERS %>
+        <%= render 'components/cards/card_section', title: 'Members', icon: 'users' do %>
+            <div class="flex justify-end mb-4">
+                <%= link_to 'Invite Members', new_workspace_invitation_path(@workspace), class: 'btn btn-small btn-white' %>
+            </div>
+            <div class="bg-white border border-tertiary-300 rounded-xl overflow-hidden">
+                <ul role="list" class="divide-y divide-tertiary-100">
+                    <% @workspace.workspace_users.each do |ws_user| %>
+                        <li class="flex items-center gap-x-4 p-5">
+                            <%= render 'components/avatars/avatar', user: ws_user.user, size: :xl %>
+                            <div class="min-w-0">
+                                <p class="text-sm font-semibold leading-6 text-tertiary-900"><%= ws_user.user.name %></p>
+                                <p class="truncate text-xs leading-5 text-tertiary-500"><%= ws_user.role.capitalize %></p>
+                            </div>
+                        </li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <%# DANGER ZONE %>
+        <% if policy(@workspace).destroy? %>
+            <%= render 'components/cards/card_section', title: 'Danger Zone', icon: 'warning', appearance: :danger do %>
+                <div class="md:flex items-center justify-between">
+                    <div class="space-y-1">
+                        <h3 class="h6 text-base">Delete this Project</h3>
+                        <p>Once you delete a project, there is no going back. Please be certain.</p>
+                    </div>
+                    <%= link_to "Delete Project", @workspace, class: "btn btn-small btn-danger mt-4 md:mt-0", data: { turbo_confirm: "You can't undo this. Are you sure you want to delete this project?", turbo_method: :delete } %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

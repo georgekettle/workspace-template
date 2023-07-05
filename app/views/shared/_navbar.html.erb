@@ -1,8 +1,28 @@
 <div class="flex items-center justify-between px-4 md:px-8 py-4 mb-16">
     <%# Logo %>
-    <%= link_to root_path do %>
-        <%= image_tag 'logo.svg', class: 'h-6' %>
-    <% end %>
+    <div class="flex items-center gap-x-6">
+        <% if current_tenant %>
+            <%= render 'shared/select_workspace' %>
+            <div class="flex items-center gap-x-4">
+                <%# Home btn %>
+                <%= render 'shared/navbar_link', text: 'Home', icon: 'house-simple', path: workspace_path(current_tenant) %>
+            </div>
+        <% else %>
+            <%= link_to root_path do %>
+                <%= image_tag 'logo.svg', class: 'h-6' %>
+            <% end %>
+            <% if current_user && current_user.workspaces.empty? %>
+                <div class="relative">
+                    <%= render 'shared/navbar_link', text: 'Get started', icon: 'sparkle', path: new_workspace_path %>
+                    <% unless request.path == new_workspace_path %>
+                        <div class="absolute top-0 right-0">
+                            <%= render 'components/notifications/ping' %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
     <% if user_signed_in? %>
         <div data-controller="dropdown" class="relative">
             <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" id="menu-button">

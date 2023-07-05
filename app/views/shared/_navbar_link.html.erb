@@ -1,0 +1,11 @@
+<% if request.path == path %>
+    <%= link_to path, class: 'btn btn-small btn-primary gap-x-1' do %>
+        <i class="ph-fill ph-<%= icon %>"></i>
+        <%= text %>
+    <% end %>
+<% else %>
+    <%= link_to path, class: 'btn btn-small gap-x-1 opacity-40 hover:opacity-100' do %>
+        <i class="ph-fill ph-<%= icon %>"></i>
+        <%= text %>
+    <% end %>
+<% end %>

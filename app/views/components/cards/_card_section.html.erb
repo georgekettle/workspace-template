@@ -1,5 +1,6 @@
 <% title ||= nil %>
 <% icon ||= nil %>
+<% appearance ||= :flat %>
 
 <div>
     <div class="flex items-center mb-4">
@@ -7,10 +8,17 @@
             <i class="ph-bold ph-<%= icon %> mr-2 text-xl"></i>
         <% end %>
         <% if title %>
-        <h2 class="h5 mb-0"><%= title %></h2>
+            <h2 class="h5 mb-0"><%= title %></h2>
         <% end %>
     </div>
-    <div class="rounded-lg ring-inset bg-tertiary-950/[.03] ring-1 ring-tertiary-950/[.06] p-4 md:p-6 lg:p-8">
-        <%= yield %>
-    </div>
+    <% case appearance %>
+    <% when :flat %>
+        <div class="card-flat p-4 md:p-6 lg:p-8">
+            <%= yield %>
+        </div>
+    <% when :danger %>
+        <div class="card-danger p-4 md:p-6 lg:p-8">
+            <%= yield %>
+        </div>
+    <% end %>
 </div>
