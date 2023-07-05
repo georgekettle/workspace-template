@@ -3,6 +3,10 @@ class WorkspaceUsersController < ApplicationController
     def edit
         @workspace_user = WorkspaceUser.find(params[:id])
         authorize @workspace_user
+
+        breadcrumb 'Home', @workspace_user.workspace
+        breadcrumb 'Settings', settings_workspace_path(@workspace_user.workspace)
+        breadcrumb 'Update Permissions', edit_workspace_user_path(@workspace_user)
     end
 
     # PATCH /workspace_users/:id
@@ -13,6 +17,10 @@ class WorkspaceUsersController < ApplicationController
         if @workspace_user.update(workspace_user_params)
             redirect_to settings_workspace_path(@workspace_user.workspace), notice: "User updated."
         else
+            breadcrumb 'Home', @workspace_user.workspace
+            breadcrumb 'Settings', settings_workspace_path(@workspace_user.workspace)
+            breadcrumb 'Update Permissions', settings_workspace_path(@workspace_user.workspace)
+
             render :edit, status: :unprocessable_entity
         end
     end
