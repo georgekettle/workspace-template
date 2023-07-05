@@ -1,0 +1,34 @@
+<div class="container-xs">
+    <%= render 'components/headers/header_center', title: "Transfer Ownership", subtitle: "Transfer ownership of this project to another member." %>
+    
+    <div class="space-y-10">
+        <%# DETAILS %>
+        <%= render 'components/cards/card_section', title: 'Select a Member', icon: 'users', appearance: :white do %>
+            <div class="divide-y divide-tertiary-100">
+                <% @workspace_users.each do |workspace_user| %>
+                    <div class="group flex items-center gap-x-4 first:pt-0 last:pb-0 py-5">
+                        <%= render 'components/avatars/avatar', user: workspace_user.user, size: :xl %>
+                        <div class="min-w-0">
+                            <p class="text-sm font-semibold leading-6 text-tertiary-900"><%= workspace_user.user.name %></p>
+                            <p class="truncate text-xs leading-5 text-tertiary-500"><%= workspace_user.role.capitalize %></p>
+                        </div>
+                        <%# above md screen size %>
+                        <div class="group-hover:opacity-100 opacity-0 transition-opacity duration-300 ease-in-out flex-grow hidden md:flex items-center justify-end">
+                            <%= link_to make_owner_workspace_user_path(workspace_user), data: { turbo_method: :patch, turbo_confirm: "You can't undo this. Are you sure you'd like to transfer ownership to #{workspace_user.user.name}?"}, class: 'btn btn-small btn-light-danger gap-x-2' do %>
+                                <i class="ph-bold ph-arrows-left-right"></i>
+                                <span>Make Owner</span>
+                            <% end %>
+                        </div>
+                        <%# below md screen size %>
+                        <div class="flex-grow flex md:hidden items-center justify-end">
+                            <%= link_to make_owner_workspace_user_path(workspace_user), data: { turbo_method: :patch, turbo_confirm: "You can't undo this. Are you sure you'd like to transfer ownership to #{workspace_user.user.name}?"}, class: 'btn btn-small btn-light-danger gap-x-2 h-8 w-8 rounded-full flex items-center justify-center' do %>
+                                <i class="ph-bold ph-arrows-left-right"></i>
+                                <span class="sr-only">Make Owner</span>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>

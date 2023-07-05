@@ -1,5 +1,5 @@
 class WorkspacesController < ApplicationController
-    before_action :set_workspace, only: %i[show update destroy settings invite switch]
+    before_action :set_workspace, only: %i[show update destroy settings invite switch transfer]
     
     # GET /workspaces/1
     def show
@@ -52,6 +52,15 @@ class WorkspacesController < ApplicationController
     def switch
         set_tenancy(@workspace)
         redirect_to @workspace, notice: 'Workspace was successfully switched.'
+    end
+
+    # GET /workspaces/1/transfer
+    def transfer
+        @workspace_users = @workspace.workspace_users.includes(:user).where.not(user_id: current_user.id)
+
+        breadcrumb "Home", workspace_path(@workspace)
+        breadcrumb "Settings", settings_workspace_path(@workspace)
+        breadcrumb "Transfer", transfer_workspace_path(@workspace)
     end
 
     private

@@ -1,0 +1,28 @@
+<div class="container-xs">
+    <%= render 'components/headers/header_center', title: 'Update Permissions' %>
+
+    <div class="space-y-10">
+        <%= render 'components/cards/card_section' do %>
+            <%= simple_form_for @workspace_user do |f| %>
+                <%= render 'shared/error_messages', form: f %>
+
+                <div class="form-inputs">
+                    <%# USER DETAILS %>
+                    <div class="flex items-center gap-x-4">
+                        <%= render 'components/avatars/avatar', user: @workspace_user.user, size: :xl %>
+                        <div class="min-w-0">
+                            <p class="text-sm font-semibold leading-6 text-tertiary-900"><%= @workspace_user.user.name %></p>
+                            <p class="truncate text-xs leading-5 text-tertiary-500"><%= @workspace_user.role.capitalize %></p>
+                        </div>
+                    </div>
+                    <%# ROLE INPUT %>
+                    <%= f.input :role, collection: WorkspaceUser.roles.except(:owner).keys, autofocus: true, include_blank: false, include_hidden: false %>
+                </div>
+
+                <div class="form-actions">
+                    <%= f.button :submit, "Update Permissions", class: 'w-full' %>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

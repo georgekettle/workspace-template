@@ -24,6 +24,10 @@ class InvitationsController < ApplicationController
     def new
         @invitation = @workspace.invitations.new
         authorize @invitation
+
+        breadcrumb 'Home', @workspace
+        breadcrumb 'Settings', settings_workspace_path(@workspace) if request.referer&.include?('settings')
+        breadcrumb 'Invite Members', new_workspace_invitation_path(@workspace)
     end
 
     # POST /workspaces/1/invitations

@@ -1,0 +1,39 @@
+<div class="flex items-center gap-x-4 p-5">
+    <%= render 'components/avatars/avatar', user: workspace_user.user, size: :xl %>
+    <div class="min-w-0">
+        <p class="text-sm font-semibold leading-6 text-tertiary-900"><%= workspace_user.user.name %></p>
+        <p class="truncate text-xs leading-5 text-tertiary-500"><%= workspace_user.role.capitalize %></p>
+    </div>
+    <div class="flex-grow flex items-center justify-end">
+        <%# OPTIONS DROPDOWN %>
+        <% if policy(workspace_user).update? || policy(workspace_user).destroy? %>
+            <div data-controller="dropdown" class="relative">
+                <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" id="<% dom_id(workspace_user, :options) %>" class="btn flex items-center justify-center h-8 w-8">
+                    <i class="ph-fill ph-dots-three-outline-vertical"></i>
+                </button>
+
+                <div
+                    data-dropdown-target="menu"
+                    class="hidden transition transform origin-top-right absolute right-0"
+                    data-transition-enter-from="opacity-0 scale-95"
+                    data-transition-enter-to="opacity-100 scale-100"
+                    data-transition-leave-from="opacity-100 scale-100"
+                    data-transition-leave-to="opacity-0 scale-95"
+                >
+                    <div class="z-10 mt-2 w-56 divide-y divide-tertiary-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="<% dom_id(workspace_user, :options) %>" tabindex="-1">
+                        <% if policy(workspace_user).update? %>
+                            <div class="py-1" role="none">
+                                <%= link_to 'Change Permissions', edit_workspace_user_path(workspace_user), class: 'text-tertiary-700 block px-4 py-2 text-sm hover:bg-tertiary-100 hover:text-tertiary-900 active:bg-tertiary-100 focus:active:bg-tertiary-100', role: 'menuitem', tabindex: '-1', id: 'menu-item-1' %>
+                            </div>
+                        <% end %>
+                        <% if policy(workspace_user).destroy? %>
+                            <div class="py-1" role="none">
+                                <%= link_to 'Delete', workspace_user_path(workspace_user), data: { turbo_method: :delete, turbo_confirm: "Are you sure you'd like to remove #{workspace_user.user.name} from the workspace?" }, class: 'text-danger-700 block px-4 py-2 text-sm hover:bg-danger-100 hover:text-danger-900 active:bg-danger-100 focus:active:bg-danger-100', role: 'menuitem', tabindex: '-1', id: 'menu-item-1' %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

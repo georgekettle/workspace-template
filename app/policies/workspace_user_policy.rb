@@ -10,6 +10,30 @@ class WorkspaceUserPolicy < ApplicationPolicy
     user_is_owner? || user_is_admin?
   end
 
+  def destroy?
+    if record.member?
+      user_is_admin? || user_is_owner?
+    elsif record.admin?
+      user_is_owner?
+    elsif record.owner?
+      false
+    end
+  end
+
+  def update?
+    if record.member?
+      user_is_admin? || user_is_owner?
+    elsif record.admin?
+      user_is_owner?
+    elsif record.owner?
+      false
+    end
+  end
+
+  def make_owner?
+    user_is_owner?
+  end
+
   private
 
   def user_is_owner?
@@ -21,6 +45,6 @@ class WorkspaceUserPolicy < ApplicationPolicy
   end
 
   def user_is_member?
-    WorkspaceUser.find_by(user: user, workspace: record.workspace).present?
+    WorkspaceUser.find_by(user: user, workspace: record.workspace)&.member?
   end
 end
