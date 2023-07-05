@@ -5,13 +5,17 @@
     <%= render 'components/headers/header_center', title: @workspace.name do %>
         <div class="flex items-center -space-x-2">
             <%= render 'components/avatars/avatar_list', users: @workspace.users, size: :xl %>
-            <%= link_to new_workspace_invitation_path(@workspace), class: 'btn h-10 w-10 rounded-full btn-white flex items-center justify-center z-10' do %>
-                <span class="sr-only">Invite Members</span>
-                <i class="ph-bold ph-plus text-xl"></i>
+            <% if policy(@workspace.invitations.new).create? %>
+                <%= link_to new_workspace_invitation_path(@workspace), class: 'btn h-10 w-10 rounded-full btn-white flex items-center justify-center z-10' do %>
+                    <span class="sr-only">Invite Members</span>
+                    <i class="ph-bold ph-plus text-xl"></i>
+                <% end %>
             <% end %>
         </div>
-        <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center' do %>
-            <i class="ph-bold ph-dots-three-vertical text-xl"></i>
+        <% if policy(@workspace).settings? %>
+            <%= link_to settings_workspace_path(@workspace), class: 'btn rounded-full h-8 w-8 flex items-center justify-center' do %>
+                <i class="ph-bold ph-dots-three-vertical text-xl"></i>
+            <% end %>
         <% end %>
     <% end %>
 </div>
