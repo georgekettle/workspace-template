@@ -12,7 +12,8 @@ Rails.application.routes.draw do
     end
     resources :invitations, only: [:new, :create]
   end
-  get '/invitations/:token', to: 'invitations#show', as: :invitation
+  get '/invitations/:token', to: 'invitations#show', as: :invitation # for accepting workspace invitations
+  resources :workspace_users, only: [:destroy]
 
   root "pages#home"
 end

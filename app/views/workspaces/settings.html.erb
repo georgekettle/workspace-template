@@ -26,15 +26,12 @@
             <div class="flex justify-end mb-4">
                 <%= link_to 'Invite Members', new_workspace_invitation_path(@workspace), class: 'btn btn-small btn-white' %>
             </div>
-            <div class="bg-white border border-tertiary-300 rounded-xl overflow-hidden">
+            <div class="bg-white border border-tertiary-300 rounded-xl">
                 <ul role="list" class="divide-y divide-tertiary-100">
-                    <% @workspace.workspace_users.each do |ws_user| %>
-                        <li class="flex items-center gap-x-4 p-5">
-                            <%= render 'components/avatars/avatar', user: ws_user.user, size: :xl %>
-                            <div class="min-w-0">
-                                <p class="text-sm font-semibold leading-6 text-tertiary-900"><%= ws_user.user.name %></p>
-                                <p class="truncate text-xs leading-5 text-tertiary-500"><%= ws_user.role.capitalize %></p>
-                            </div>
+                    <% workspace_users = @workspace.workspace_users %>
+                    <% workspace_users.each_with_index do |ws_user, index| %>
+                        <li style="z-index: <%= workspace_users.count - index %>">
+                            <%= render ws_user %>
                         </li>
                     <% end %>
                 </ul>
