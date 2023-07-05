@@ -1,0 +1,4 @@
+<%# Invite with link to invitation show %>
+<h1>You have been invited to join <%= @invitation.workspace.name %></h1>
+<p>Click the link below to view the invitation:</p>
+<%= link_to "View Invitation", invitation_url(@invitation.token) %>

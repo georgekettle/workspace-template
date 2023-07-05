@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     resources :invitations, only: [:new, :create]
   end
+  get '/invitations/:token', to: 'invitations#show', as: :invitation
 
   root "pages#home"
 end

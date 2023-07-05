@@ -18,6 +18,7 @@ class InvitationsController < ApplicationController
             authorize invitation
 
             if invitation.save
+                InvitationMailer.invitation_email(invitation).deliver_now
                 successful_invitations << invitation
             else
                 failed_invitations << invitation
