@@ -22,12 +22,6 @@ module Multitenant
                 # If there's no tenant_id in the session, set the first workspace of the user as the current tenant
                 set_current_tenant(current_user.workspaces.first)
             end
-        else
-            # If the user doesn't have any workspaces and is not on the 'new workspace' page, redirect them to it
-            return if (request.path == new_workspace_path) || (request.path == workspaces_path && request.post?) || devise_controller?
-    
-            # Redirect the user to the 'new workspace' page with a notice to create a workspace before proceeding
-            redirect_to new_workspace_path, notice: 'You must create a workspace before continuing'
         end
     end    
 end
