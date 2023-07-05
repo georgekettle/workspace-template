@@ -20,6 +20,16 @@ class WorkspaceUserPolicy < ApplicationPolicy
     end
   end
 
+  def update?
+    if record.member?
+      user_is_admin? || user_is_owner?
+    elsif record.admin?
+      user_is_owner?
+    elsif record.owner?
+      false
+    end
+  end
+
   private
 
   def user_is_owner?

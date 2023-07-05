@@ -30,7 +30,7 @@
                 <ul role="list" class="divide-y divide-tertiary-100">
                     <% workspace_users = @workspace.workspace_users %>
                     <% workspace_users.each_with_index do |ws_user, index| %>
-                        <li style="z-index: <%= workspace_users.count - index %>">
+                        <li class="relative" style="z-index: <%= workspace_users.count - index %>">
                             <%= render ws_user %>
                         </li>
                     <% end %>
