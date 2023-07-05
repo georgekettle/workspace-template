@@ -6,6 +6,10 @@ class InvitationPolicy < ApplicationPolicy
     # end
   end
 
+  def show?
+    true
+  end
+
   def create?
     user_is_owner? || user_is_admin?
   end

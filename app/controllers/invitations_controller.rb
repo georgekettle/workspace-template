@@ -1,5 +1,24 @@
 class InvitationsController < ApplicationController
+    skip_before_action :authenticate_user!, only: [:show]
     before_action :set_workspace, only: [:new, :create]
+
+    # GET /invitations/:token
+    def show
+        @invitation = Invitation.find_by(token: params[:token])
+        authorize @invitation
+
+        if user_signed_in?
+            if @invitation.workspace.users.include?(current_user)
+                flash[:notice] = 'You are already a member of this workspace'
+            else
+                @invitation.workspace.users << current_user
+                flash[:notice] = 'You have joined the workspace'
+            end
+            redirect_to @invitation.workspace
+        else
+            redirect_to new_user_registration_path(invitation_token: @invitation.token), notice: 'Please sign up to join the workspace'
+        end
+    end
 
     # GET /workspaces/1/invitations/new
     def new

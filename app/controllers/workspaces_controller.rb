@@ -3,6 +3,7 @@ class WorkspacesController < ApplicationController
     
     # GET /workspaces/1
     def show
+        set_tenancy(@workspace)
     end
 
     # GET /workspaces/new
@@ -49,11 +50,16 @@ class WorkspacesController < ApplicationController
 
     # POST /workspaces/1/switch
     def switch
-        session[:tenant_id] = params[:id]
+        set_tenancy(@workspace)
         redirect_to @workspace, notice: 'Workspace was successfully switched.'
     end
 
     private
+
+    def set_tenancy(workspace)
+        session[:tenant_id] = params[:id]
+        find_workspace_and_set_tenant
+    end
 
     def set_workspace
         @workspace = Workspace.find(params[:id])
