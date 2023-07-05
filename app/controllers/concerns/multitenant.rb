@@ -10,11 +10,10 @@ module Multitenant
 
     def find_workspace_and_set_tenant
         # Return early if no user is currently signed in
-        return unless current_user 
+        return unless current_user
     
         # If the current user has any workspaces
         if current_user.workspaces.any?
-    
             # If there's a tenant_id set in the session, and a workspace with that ID exists for the current user
             if session[:tenant_id] && current_user.workspaces.exists?(session[:tenant_id])
                 # Find the workspace by the id stored in the session and set it as the current tenant
@@ -25,7 +24,7 @@ module Multitenant
             end
         else
             # If the user doesn't have any workspaces and is not on the 'new workspace' page, redirect them to it
-            return if request.path == new_workspace_path
+            return if (request.path == new_workspace_path) || (request.path == workspaces_path && request.post?) || devise_controller?
     
             # Redirect the user to the 'new workspace' page with a notice to create a workspace before proceeding
             redirect_to new_workspace_path, notice: 'You must create a workspace before continuing'
