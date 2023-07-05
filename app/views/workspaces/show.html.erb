@@ -5,7 +5,7 @@
     <%= render 'components/headers/header_center', title: @workspace.name do %>
         <div class="flex items-center -space-x-2">
             <%= render 'components/avatars/avatar_list', users: @workspace.users, size: :xl %>
-            <%= link_to new_workspace_workspace_user_path(@workspace), class: 'btn h-10 w-10 rounded-full btn-white flex items-center justify-center z-10' do %>
+            <%= link_to '#', class: 'btn h-10 w-10 rounded-full btn-white flex items-center justify-center z-10' do %>
                 <span class="sr-only">Invite Members</span>
                 <i class="ph-bold ph-plus text-xl"></i>
             <% end %>
